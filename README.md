@@ -4,7 +4,7 @@ The Project is in two parts, both focused on network repair applications, since 
 # Part 1: Network Gate Repair
 Consider this logic network:
 
-![](https://github.com/3a3del/Serious-BDDs/blob/main/First%20Part%20Design.jpeg)     
+                                  ![](https://github.com/3a3del/Serious-BDDs/blob/main/First%20Part%20Design.jpeg)     
 
 We are showing just the carry chain (from carry-in “cin” to carry-out “cout”) for a 4 bit adder, this is a more sophisticated architecture called a carry-bypass adder. We believe the highlighted gate labeled “?” has been implemented incorrectly. Our job is repair this network and tell the proper gate.
 # How to this
@@ -15,7 +15,7 @@ We are showing just the carry chain (from carry-in “cin” to carry-out “cou
   3. Set up the BDD-based gate repair: replace the gate with the mux; EXNOR the correct circuit with this incorrect circuit with the mux inserted; quantify away the right 
      variables; satisfy this result.
 
-  ![](https://github.com/3a3del/Serious-BDDs/blob/main/temp.jpeg)     
+                                        ![](https://github.com/3a3del/Serious-BDDs/blob/main/temp.jpeg)     
 
   
   
