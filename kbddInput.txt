@@ -1,0 +1,47 @@
+# input vars
+boolean a b c d S0 S1 S2
+
+# define the correct circuit
+# first stage
+eval wire1 (!a & b)
+eval wire2 (a & !b)
+eval wire3 (a & b)
+eval wire4 (!a & !b)
+# second stage
+eval wire5 (wire1 + wire2)
+eval wire6 (wire3 + wire4)
+# third stage
+eval wire7 (wire5 & !c)
+eval wire8 (!d & !c)
+eval wire9 (!d & wire6)
+# fourth stage
+eval F (wire7 + wire8 + wire9)
+
+# define the bug circuit
+# first stage
+eval wire11 (!a & b)
+eval wire22 (a & !b)
+eval wire33 (a & b)
+eval wire44 (!a & !b)
+# second stage
+eval wire55 (wire11 + wire22)
+eval wire66 (wire33 + wire44)
+# third stage
+eval wire77 ((wire55 & !c) & (!S0 & !S1 & S2)) + ((!wire55 & !c) & (S0 & !S1 & S2)) + (!(wire55 & !c) & (!S0 & S1 & S2)) + (!(wire55 & !c) & (!S0 & !S1 & !S2)) + (!(wire55 & !c) & (S0 & !S1 & !S2)) + (!(wire55 & !c) & (!S0 & S1 & !S2)) + (!(wire55 & !c) & (S0 & S1 & S2))
+eval wire88 (!d & !c)
+eval wire99 (!d & wire66)
+# fourth stage
+eval Repair wire77 +wire88 +wire99
+
+# make the Z function that compares the right version of
+# the network and the version with the MUX replacing
+# suspect gate (this is EXNOR of cout and repair functions)
+
+eval Z ((Repair & F) + (!Repair & !F))
+quantify u ForallZ Z a b c d
+# let’s ask kbdd to show an equation for this quantified function
+#sop ForallZ
+# what values of the S0’s make this function == 1?
+satisfy ForallZ
+# that’s it!
+quit
