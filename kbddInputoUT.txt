@@ -1,0 +1,75 @@
+KBDD Standard output
+KBDD: limit 104857600
+limit is 104857600
+KBDD: # input vars
+KBDD: boolean a b c d S0 S1 S2
+KBDD: 
+KBDD: # define the correct circuit
+KBDD: # first stage
+KBDD: eval wire1 (!a & b)
+KBDD: eval wire2 (a & !b)
+KBDD: eval wire3 (a & b)
+KBDD: eval wire4 (!a & !b)
+KBDD: # second stage
+KBDD: eval wire5 (wire1 + wire2)
+KBDD: eval wire6 (wire3 + wire4)
+KBDD: # third stage
+KBDD: eval wire7 (wire5 & !c)
+KBDD: eval wire8 (!d & !c)
+KBDD: eval wire9 (!d & wire6)
+KBDD: # fourth stage
+KBDD: eval F (wire7 + wire8 + wire9)
+KBDD: 
+KBDD: # define the bug circuit
+KBDD: # first stage
+KBDD: eval wire11 (!a & b)
+KBDD: eval wire22 (a & !b)
+KBDD: eval wire33 (a & b)
+KBDD: eval wire44 (!a & !b)
+KBDD: # second stage
+KBDD: eval wire55 (wire11 + wire22)
+KBDD: eval wire66 (wire33 + wire44)
+KBDD: # third stage
+KBDD: eval wire77 ((wire55 & !c) & (!S0 & !S1 & S2)) + ((!wire55 & !c) & (S0 & !S1 & S2)) + (!(wire55 & !c) & (!S0 & S1 & S2)) + (!(wire55 & !c) & (!S0 & !S1 & !S2)) + (!(wire55 & !c) & (S0 & !S1 & !S2)) + (!(wire55 & !c) & (!S0 & S1 & !S2)) + (!(wire55 & !c) & (S0 & S1 & S2))
+KBDD: eval wire88 (!d & !c)
+KBDD: eval wire99 (!d & wire66)
+KBDD: # fourth stage
+KBDD: eval Repair wire77 +wire88 +wire99
+KBDD: 
+KBDD: # make the Z function that compares the right version of
+KBDD: # the network and the version with the MUX replacing
+KBDD: # suspect gate (this is EXNOR of cout and repair functions)
+KBDD: 
+KBDD: eval Z ((Repair & F) + (!Repair & !F))
+KBDD: quantify u ForallZ Z a b c d
+KBDD: # let’s ask kbdd to show an equation for this quantified function
+KBDD: #sop ForallZ
+KBDD: # what values of the S0’s make this function == 1?
+KBDD: satisfy ForallZ
+Variables: S0 S1 S2
+001
+KBDD: # that’s it!
+KBDD: quit
+
+KBDD Standard error
+wire1: (!a & b) 
+wire2: (a & !b) 
+wire3: (a & b) 
+wire4: (!a & !b) 
+wire5: (wire1 + wire2) 
+wire6: (wire3 + wire4) 
+wire7: (wire5 & !c) 
+wire8: (!d & !c) 
+wire9: (!d & wire6) 
+F: (wire7 + wire8 + wire9) 
+wire11: (!a & b) 
+wire22: (a & !b) 
+wire33: (a & b) 
+wire44: (!a & !b) 
+wire55: (wire11 + wire22) 
+wire66: (wire33 + wire44) 
+wire77: ((wire55 & !c) & (!S0 & !S1 & S2)) + ((!wire55 & !c) & (S0 & !S1 & S2)) + (!(wire55 & !c) & (!S0 & S1 & S2)) + (!(wire55 & !c) & (!S0 & !S1 & !S2)) + (!(wire55 & !c) & (S0 & !S1 & !S2)) + (!(wire55 & !c) & (!S0 & S1 & !S2)) + (!(wire55 & !c) & (S0 & S1 & S2)) 
+wire88: (!d & !c) 
+wire99: (!d & wire66) 
+Repair: wire77 +wire88 +wire99 
+Z: ((Repair & F) + (!Repair & !F)) 
