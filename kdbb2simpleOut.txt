@@ -1,0 +1,37 @@
+KBDD Standard output
+KBDD: limit 104857600
+limit is 104857600
+KBDD: # input vars
+KBDD: boolean a b S0
+KBDD: 
+KBDD: # define the correct circuit
+KBDD: eval F (!a + b)
+KBDD: 
+KBDD: # define the bug circuit
+KBDD: eval preSelect1 !(a & b)
+KBDD: eval Selected1 (!S0 & !preSelect1)+(S0 & preSelect1)
+KBDD: eval preSelect2 (!a+Selected1)
+KBDD: eval Repair (S0 & !preSelect2)+(!S0 & preSelect2)
+KBDD: 
+KBDD: # make the Z function that compares the right version of
+KBDD: # the network and the version with the MUX replacing
+KBDD: # suspect gate (this is EXNOR of cout and repair functions)
+KBDD: 
+KBDD: eval Z (Repair & F)+(!Repair & !F)
+KBDD: quantify u ForallZ Z a b
+KBDD: # let’s ask kbdd to show an equation for this quantified function
+KBDD: #sop ForallZ
+KBDD: # what values of the S0’s make this function == 1?
+KBDD: satisfy ForallZ
+Variables: S0
+0
+KBDD: # that’s it!
+KBDD: quit
+
+KBDD Standard error
+F: (!a + b) 
+preSelect1: !(a & b) 
+Selected1: (!S0 & !preSelect1)+(S0 & preSelect1) 
+preSelect2: (!a+Selected1) 
+Repair: (S0 & !preSelect2)+(!S0 & preSelect2) 
+Z: (Repair & F)+(!Repair & !F) 
