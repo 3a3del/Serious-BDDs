@@ -1,0 +1,24 @@
+# input vars
+boolean a b S0
+
+# define the correct circuit
+eval F (!a + b)
+
+# define the bug circuit
+eval preSelect1 !(a & b)
+eval Selected1 (!S0 & !preSelect1)+(S0 & preSelect1)
+eval preSelect2 (!a+Selected1)
+eval Repair (S0 & !preSelect2)+(!S0 & preSelect2)
+
+# make the Z function that compares the right version of
+# the network and the version with the MUX replacing
+# suspect gate (this is EXNOR of cout and repair functions)
+
+eval Z (Repair & F)+(!Repair & !F)
+quantify u ForallZ Z a b
+# let’s ask kbdd to show an equation for this quantified function
+#sop ForallZ
+# what values of the S0’s make this function == 1?
+satisfy ForallZ
+# that’s it!
+quit
