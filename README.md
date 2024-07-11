@@ -21,7 +21,11 @@ We are showing just the carry chain (from carry-in “cin” to carry-out “cou
 Variables: d14 d13 d12 d11 d10 d9 d8 d7 d6 d5 d4 d3 d2 d1 d0 : 000000000000000
 
 That's mean we can remove the gate entirely and replace it with a constant “0”;  this is logically a correct repair, but it makes the adder slow, and is not the best solution. 
-  
+
+# Part 2: Unknown Inversion Find-and-Repair
+A common error in a large logic network is an incorrect inversion: on some internal wire, there is error that can be corrected by adding exactly one invertor to this wire 
+in the network. But, we do not know where the error is. It turns out we can still use a BDD to solve this new, seemingly more difficult problem. We can find the wrong wire and then invert it to repair things.
+ 
   
   
   
