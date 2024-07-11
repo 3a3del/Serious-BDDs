@@ -15,8 +15,11 @@ We are showing just the carry chain (from carry-in “cin” to carry-out “cou
   3. Set up the BDD-based gate repair: replace the gate with the mux; EXNOR the correct circuit with this incorrect circuit with the mux inserted; quantify away the right 
      variables; satisfy this result.
 
-      ![](https://github.com/3a3del/Serious-BDDs/blob/main/temp.jpeg)     
-
+      ![](https://github.com/3a3del/Serious-BDDs/blob/main/temp.jpeg)
+     
+# Results
+Variables: d14 d13 d12 d11 d10 d9 d8 d7 d6 d5 d4 d3 d2 d1 d0 : 000000000000000
+That's mean we can remove the gate entirely and replace it with a constant “0”;  this is logically a correct repair, but it makes the adder slow, and is not the best solution. 
   
   
   
