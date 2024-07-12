@@ -28,7 +28,9 @@ in the network. But, we do not know where the error is. It turns out we can stil
 
  # Idea
 It is easiest to see the idea – which you need to work out – on a small design. Suppose we have this small section of a larger logic network, and we want to ask the simpler question: which one of these two wires is incorrectly inverted?
-      ![](https://github.com/3a3del/Serious-BDDs/blob/main/t2.jpeg)
+
+![](https://github.com/3a3del/Serious-BDDs/blob/main/t2.jpeg)
+      
 Then we modify the network as follows:
     - On each suspect wire, we insert a programmable inverter (PRI). A programmable inverter is a small piece of logic (2 inputs, 1 output) that has this function: if the 
       control input N=0, then out=in; if the control input N=1, then out=in’. In other words, the N signal negates the input, when N=1. 
