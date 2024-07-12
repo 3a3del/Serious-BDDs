@@ -50,9 +50,33 @@ Just as with previous network repair methods, we need to have available some cor
    
 This is the general “recipe” for finding and correcting an inversion error on a wire. It is helpful to consider a very small, concrete example, to work through the details you need to determine to complete this part.                    
   
+  # Part 2: Simple Example
+  Here is a little example. Suppose we have this small logic network. The wires with “?” labels are perhaps wrong. We want to determine which of these needs to have an 
+  inverter added.
   
+ ![](https://github.com/3a3del/Serious-BDDs/blob/main/t6.jpeg)                    
   
+ So
+ 
+  ![](https://github.com/3a3del/Serious-BDDs/blob/main/t7.jpeg)
+
+- You'll find the output script in *kdbb2simpleOut*
   
+ # Part 2: Getting A Logic Network To Repair
+
+   ![](https://github.com/3a3del/Serious-BDDs/blob/main/second.jpg)
+   
+Repeat the same steps above... So we expect S2 S1 S0 : 100
+
+KBDD OUTPUT...
+
+   KBDD: # what values of the S0’s make this function == 1?
+   
+   KBDD: satisfy ForallZ
+   
+   Variables: S0 S1 S2 001
+
+*I'll left this queation here, what if is there multiple wires in error!..What will we do?*
   
                                                                                                                                                                                                                                                                                                                                                                    
   
