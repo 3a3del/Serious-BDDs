@@ -5,7 +5,6 @@ The Project is in two parts, both focused on network repair applications, since 
 Consider this logic network:
 
    ![](https://github.com/3a3del/Serious-BDDs/blob/main/First%20Part%20Design.jpeg)     
-
 We are showing just the carry chain (from carry-in “cin” to carry-out “cout”) for a 4 bit adder, this is a more sophisticated architecture called a carry-bypass adder. We believe the highlighted gate labeled “?” has been implemented incorrectly. Our job is repair this network and tell the proper gate.
 # How to this
   1. Build a “correct” version of the circuit. This means you just need an ordinary 4 bit adder with a carry-in and a carry-out from the high-order bit. You can 
