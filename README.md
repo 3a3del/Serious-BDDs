@@ -37,7 +37,8 @@ It is easiest to see the idea – which you need to work out – on a small desi
 Then we modify the network as follows:
     - On each suspect wire, we insert a programmable inverter (PRI). A programmable inverter is a small piece of logic (2 inputs, 1 output) that has this function: if the 
       control input N=0, then out=in; if the control input N=1, then out=in’. In other words, the N signal negates the input, when N=1. 
-        ![](https://github.com/3a3del/Serious-BDDs/blob/main/t3.jpeg)
+      
+   ![](https://github.com/3a3del/Serious-BDDs/blob/main/t3.jpeg)
         
 We then build another piece of new logic that selects one of the programmable inverters, and sets its control signal Ni = 1. All the other programmable inverters are set to Nj=0. This selection logic takes a new set of inputs the select which one of the PRI control inputs to set to 1. Suppose you had 16 potential wires to check for an inversion error. Then this selection logic has log2(16) = 4 inputs, S3,S2,S1,S0, select one PRI to enable. For example, if 
 S3,S2,S1,S0=1001, then we will set N9=1, and set all other Nj=0, for j9. Let’s call this version of the design, with the PRI’s and the selection logic, the “proposed repair” network. This is shown below
