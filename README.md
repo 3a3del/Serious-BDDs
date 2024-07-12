@@ -76,6 +76,7 @@ KBDD OUTPUT...
    
    Variables: S0 S1 S2 001
 
+*I'll left this queation here, what if is there multiple wires in error!..What will we do?*
   
                                                                                                                                                                                                                                                                                                                                                                    
   
