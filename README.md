@@ -71,9 +71,10 @@ Repeat the same steps above... So we expect S2 S1 S0 : 100
 KBDD OUTPUT...
 
    KBDD: # what values of the S0’s make this function == 1?
+   
    KBDD: satisfy ForallZ
-   Variables: S0 S1 S2
-                001
+   
+   Variables: S0 S1 S2 001
 
   
                                                                                                                                                                                                                                                                                                                                                                    
